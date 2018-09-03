@@ -1,3 +1,11 @@
+extern crate rand;
+
+mod card;
+mod player;
+mod game;
+
+use game::Game;
+
 fn main() {
-    println!("Hello, world!");
+    Game::new(10);
 }
