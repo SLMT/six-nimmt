@@ -11,4 +11,8 @@ impl Player {
             hand: cards
         }
     }
+
+    pub fn get_hand(&self) -> &Vec<Card> {
+        &self.hand
+    }
 }
