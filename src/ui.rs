@@ -1,5 +1,6 @@
 
 use std::io::{self, Write};
+use std::str::FromStr;
 
 use game::Game;
 
@@ -41,25 +42,25 @@ impl UI {
             println!("Card {}: {:?}", card_id, hand[card_id]);
         }
         println!("\n");
-
-        print!("Choose a card: ");
-        io::stdout().flush().expect("flush error");
-
-        let mut input = String::new();
-        match io::stdin().read_line(&mut input) {
-            Ok(n) => {
-                println!("{} bytes read", n);
-                println!("{}", input);
-            }
-            Err(error) => println!("error: {}", error),
-        }
     }
 
     fn select_card(&mut self) {
-
+        let chosen_hand = read_card_choice();
+        // TODO: implement
     }
 
     fn show_result(&mut self) {
 
     }
+}
+
+fn read_card_choice() -> usize {
+    print!("Choose a card: ");
+    io::stdout().flush().expect("flush error");
+
+    let mut input = String::new();
+    io::stdin().read_line(&mut input).expect("read error");
+    
+    // XXX: Maybe we should show the error then proceed?
+    usize::from_str(&input).expect("parse input error")
 }

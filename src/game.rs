@@ -37,6 +37,25 @@ impl Game {
     pub fn check_hand(&self, player_id: usize) -> Option<&Vec<Card>> {
         self.players.get(player_id).map(|p| p.get_hand())
     }
+
+    pub fn play_card(&mut self, player_id: usize, card_id: usize) -> bool {
+        match self.players.get(player_id) {
+            Some(ref player) => {
+                match player.take_card(card_id) {
+                    Some(card) => {
+                        // TODO: put into the line
+                        true
+                    },
+                    None => false
+                }
+            },
+            None => false
+        }
+    }
+
+    fn put_in_line(&mut self, card: Card) {
+        // TODO
+    }
 }
 
 fn create_cards(card_count: u32) -> Vec<Card> {

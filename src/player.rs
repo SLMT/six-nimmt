@@ -15,4 +15,12 @@ impl Player {
     pub fn get_hand(&self) -> &Vec<Card> {
         &self.hand
     }
+
+    pub fn take_card(&mut self, card_id: usize) -> Option<Card> {
+        if card_id < self.hand.len() {
+            Some(self.hand.remove(card_id))
+        } else {
+            None
+        }
+    }
 }
